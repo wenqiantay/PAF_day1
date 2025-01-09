@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import vttp.paf.day1.model.Customer;
@@ -22,6 +23,14 @@ public class CustomerRestController {
     public ResponseEntity<List<Customer>> getAllCustomers(){
         
         List<Customer> customers = customerService.getAllCustomers();
+
+        return ResponseEntity.ok().body(customers);
+    }
+
+    @GetMapping("/limit")
+    public ResponseEntity<List<Customer>> getCustomerByLimitOffset(@RequestParam("limit") int limit, @RequestParam("offset") int offset){
+        
+        List<Customer> customers = customerService.getCustomers(limit, offset);
 
         return ResponseEntity.ok().body(customers);
     }

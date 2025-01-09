@@ -18,4 +18,9 @@ public class CustomerService {
 
         return customerRepository.getCustomers();
     }
+
+    public List<Customer> getCustomers(int limit, int offset){
+
+        return customerRepository.getCustomers(limit, offset);
+    }
 }

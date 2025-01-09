@@ -31,4 +31,19 @@ public class CustomerRepository {
 
         return customers;
     }
+
+    public List<Customer> getCustomers(int limit, int offset){
+        List<Customer> customers = new ArrayList<>();
+
+        SqlRowSet sqlRowSet = template.queryForRowSet((sql.sql_getCustomer_LimitOffset),limit, offset);
+        while (sqlRowSet.next()){
+            Customer customer = new Customer();
+            customer.setId(sqlRowSet.getInt("id"));
+            customer.setFullname(sqlRowSet.getString("fullname"));
+            customer.setEmail(sqlRowSet.getString("email"));
+            customers.add(customer);
+        }
+
+        return customers;
+    }
 }
