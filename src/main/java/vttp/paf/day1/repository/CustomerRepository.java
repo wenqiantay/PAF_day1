@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
@@ -45,5 +46,12 @@ public class CustomerRepository {
         }
 
         return customers;
+    }
+
+    public Customer getCustomerById(int id) {
+        Customer customer = new Customer();
+        
+        return template.queryForObject(sql.sql_getCustomerById, BeanPropertyRowMapper.newInstance(Customer.class), id);
+
     }
 }

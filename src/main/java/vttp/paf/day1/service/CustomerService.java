@@ -23,4 +23,8 @@ public class CustomerService {
 
         return customerRepository.getCustomers(limit, offset);
     }
+
+    public Customer getCustomerById(int id){
+        return customerRepository.getCustomerById(id);
+    }
 }
